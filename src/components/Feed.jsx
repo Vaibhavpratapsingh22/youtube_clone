@@ -1,20 +1,20 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Box, Stack, Typography } from "@mui/material";
-import { Videos, SideBar, VideoCard } from "./";
+import { Videos, SideBar } from "./";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 
 const Feed = () => {
 
   const [selectedCategory, setSelectedCategory] = useState("New");
   const [videos, setVideos] = useState([]);
-  console.log(selectedCategory,videos,"???????????????????????");
+
 
   useEffect(() => {
-  const data =  fetchFromAPI(`${selectedCategory}`).then(mydata => setVideos(mydata.contents));
+   fetchFromAPI(`${selectedCategory}`).then(mydata => setVideos(mydata.contents));
   }, [selectedCategory]);
 
- 
+  console.log(selectedCategory,videos,"???????????????????????");
   return (
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
       <Box
@@ -56,12 +56,13 @@ const Feed = () => {
           <span
             style={{
               color: "#FC1503",
+              marginLeft: 10,
             }}
           >
             videos
           </span>
         </Typography>
-        {videos.length!=0 ?<Videos videos={videos} />:"Loading..."}
+        {videos.length!==0 ?<Videos videos={videos} />:"Loading..."}
         
       </Box>
     </Stack>

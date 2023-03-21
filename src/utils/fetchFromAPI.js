@@ -11,8 +11,20 @@ const options = {
 
 
 
-export const fetchFromAPI =async (url)=>{
+export const fetchFromAPI =async (url,search)=>{
+  let data;
+ if(search){
+  options.params = {};
+  options.params.id= url;
+  options.url= `https://youtube138.p.rapidapi.com/video/streaming-data/`;
+  data = await axios.request(options);
+  }
+
+ else{
+  options.params= {q: 'gym', hl: 'en', gl: 'US'}
   options.params.q= url;
-  let {data} = await axios.request(options);
-  return data;
+  options.params.url= 'https://youtube138.p.rapidapi.com/search/';
+  data = await axios.request(options);
+ }
+  return data.data;
 }
