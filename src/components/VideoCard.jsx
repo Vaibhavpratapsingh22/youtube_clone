@@ -11,8 +11,6 @@ import {
 const VideoCard = ({ video }) => {
   return <>
   {
-    console.log(video,"<<<<<<<<<<<<<<<<")}
-  {
   video!=='undefined'&&video!==undefined?  <Card key={video?.video?.videoId} sx={{width:{md:'320px', xs:'100%', boxShadow:'none', borderRadius:'none'}}}>
     <Link to={video?.video?.videoId ? `/video/${video?.video?.videoId}` : demoVideoUrl}>
     <CardMedia image={video?.video?.thumbnails[0]?.url || demoThumbnailUrl} alt={video?.video?.title} sx={{width:'320px', height: '240px'}}>

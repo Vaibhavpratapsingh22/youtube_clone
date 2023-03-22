@@ -1,29 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import ReactPlayer from 'react-player'
-import { Typography, Box, Stack } from '@mui/material';
-import { CheckCircle } from '@mui/icons-material';
-import  {Videos} from './';
-import { fetchFromAPI } from '../utils/fetchFromAPI';
-import { ClassNames } from '@emotion/react';
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import ReactPlayer from "react-player";
+import { Typography, Box, Stack } from "@mui/material";
+import { fetchFromAPI } from "../utils/fetchFromAPI";
 
 const VideoDetail = () => {
-  const [videoDetail, setVideoDetail] = useState(null)
-  const {id} = useParams();
-  useEffect(()=>{
-    fetchFromAPI(`${id}`,'video/streaming-data/').then((data)=>console.log(data))
-  })
+  const { id } = useParams();
+  useEffect(() => {
+    fetchFromAPI(`${id}`, "video/streaming-data/").then((data) =>
+      console.log(data,"................")
+    );
+  });
   return (
-   <Box minHeight='95vh'>
-    <Stack direction={{xs:'column', md:'row'}}>
-      <Box sx={{width:'100%',position:'sticky', top:'86px'}}>
-      <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`} ClassName="react-player" controls></ReactPlayer>
-      </Box>
+    <Box minHeight="95vh">
+      <Stack direction={{ xs: "column", md: "row" }}>
+        <Box flex={1}>
+          <Box sx={{ width: "100%", position: "sticky", top: "86px" }}>
+            <ReactPlayer
+              url={`https://www.youtube.com/watch?v=${id}`}
+              ClassName="react-player"
+              controls
+            ></ReactPlayer>
 
-    </Stack>
+            <Typography color="#fff" fontWeight="bold" p={2}>
+              Title for the video player
+            </Typography>
+          </Box>
+        </Box>
+      </Stack>
+    </Box>
+  );
+};
 
-   </Box>
-  )
-}
-
-export default VideoDetail
+export default VideoDetail;

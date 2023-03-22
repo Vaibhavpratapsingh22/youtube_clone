@@ -9,14 +9,11 @@ const Feed = () => {
   const [selectedCategory, setSelectedCategory] = useState("New");
   const [videos, setVideos] = useState([]);
 
-
   useEffect(() => {
    fetchFromAPI(`${selectedCategory}`).then(mydata => setVideos(mydata.contents));
   }, [selectedCategory]);
-
-  console.log(selectedCategory,videos,"???????????????????????");
   return (
-    <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
+    <Stack sx={{ flexDirection: { sx: "column", md: "row" } }} key={Math.round(Math.random()*100)}>
       <Box
         sx={{
           height: { sx: "auto", md: "92vh" },
